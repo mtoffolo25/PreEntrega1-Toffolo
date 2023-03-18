@@ -1,4 +1,5 @@
 import CartWidget from "../CartWidget/CartWidget"
+import logo from "./assets/logo-st.jpg"
 
 const NavBar = () => {
     return (
@@ -15,6 +16,9 @@ const NavBar = () => {
                 <button>Mothers</button>
                 <button><CartWidget /></button>
             </div>
+            <hr />
+            <img src={logo} alt="logo-st-mc" />
+            <hr />
         </nav>
     )
 }
