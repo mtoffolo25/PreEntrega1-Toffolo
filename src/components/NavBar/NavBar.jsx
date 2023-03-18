@@ -1,10 +1,13 @@
 import CartWidget from "../CartWidget/CartWidget"
-import logo from "./assets/logo-st.jpg"
+import logo from "../assets/logo-st.jpg"
 
 const NavBar = () => {
     return (
         <nav>
+            <img className="logo" src={logo} alt="logo-st-mc" />
             <h1>SERVICIO TÉCNICO - MC</h1>
+            <button><CartWidget /></button>
+            <hr />
             <div>
                 <button>Periféricos</button>
                 <button>Placas de Video</button>
@@ -14,11 +17,8 @@ const NavBar = () => {
                 <button>Almacenamiento</button>
                 <button>Fuentes</button>
                 <button>Mothers</button>
-                <button><CartWidget /></button>
+                <button>Servicio Técnico Especializado</button>
             </div>
-            <hr />
-            <img src={logo} alt="logo-st-mc" />
-            <hr />
         </nav>
     )
 }
