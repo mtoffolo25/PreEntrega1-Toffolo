@@ -8,7 +8,7 @@ const NavBar = () => {
             <h1>SERVICIO TÉCNICO - MC</h1>
             <button><CartWidget /></button>
             <hr />
-            <div>
+            <>
                 <button>Periféricos</button>
                 <button>Placas de Video</button>
                 <button>Monitores</button>
@@ -18,7 +18,7 @@ const NavBar = () => {
                 <button>Fuentes</button>
                 <button>Mothers</button>
                 <button>Servicio Técnico Especializado</button>
-            </div>
+            </>
         </nav>
     )
 }
