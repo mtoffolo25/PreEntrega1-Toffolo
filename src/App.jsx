@@ -1,6 +1,8 @@
 import './App.css'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import NavBar from './components/NavBar/NavBar'
 import ItemListContainer from './components/ItemListContainer/ItemListContainer'
+import ItemCount from './components/ItemCount/ItemCount'
 
 function App() {
 
@@ -8,7 +10,8 @@ function App() {
     <div className="App">
      <NavBar />
      <hr />
-    <ItemListContainer greeting={`¡Bienvenidos!`} />
+    <ItemListContainer/>
+    <ItemCount />
     </div>
   )
 }

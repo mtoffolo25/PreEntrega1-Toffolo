@@ -1,8 +1,10 @@
+import { Button } from "react-bootstrap"
+
+
 const CartWidget = () => {
     return (
         <>
-            <i className="bi bi-cart2"></i>
-            0
+        <Button variant="outline-secondary">🛒0</Button>{' '}
         </>
     )
 }
