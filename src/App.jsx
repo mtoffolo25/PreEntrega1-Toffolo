@@ -11,6 +11,7 @@ function App() {
      <NavBar />
      <hr />
     <ItemListContainer/>
+    <hr />
     <ItemCount />
     </div>
   )

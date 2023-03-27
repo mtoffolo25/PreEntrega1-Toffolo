@@ -1,8 +1,8 @@
 import Item from "../Item/Item"
-
+import "./ItemList.css"
 
 const ItemList = ({productos}) => {
-    return (<div>
+    return (<div className="conteinerProd">
             {   productos.length > 0 &&
                 productos.map((prod) => {
                 return (

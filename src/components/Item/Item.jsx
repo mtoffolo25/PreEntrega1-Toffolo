@@ -1,8 +1,9 @@
 import { Button, Card } from "react-bootstrap";
+import "./Item.css"
 
 const Item = ({ producto }) => {
   return (
-    <div>
+    <div className="cardProd">
       <Card style={{ width: "18rem" }} className={producto.id}>
         <Card.Img variant="top" src={producto.img} />
         <Card.Body>
