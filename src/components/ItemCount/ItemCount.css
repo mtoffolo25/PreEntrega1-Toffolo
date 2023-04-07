@@ -1,0 +1,11 @@
+
+.btn-group{
+    display: flex;
+}
+button {
+    height: 50px;
+    width: 80px;
+}
+.agregarAlCarrito p {
+    text-align: center;
+}

@@ -1,31 +1,20 @@
-import { useState } from "react"
+import { useCount } from "../hooks/useCount"
+import "./ItemCount.css"
 
-const ItemCount = () => {
+export const ItemCount = ({initial=1, stock=5, min=1, onAdd}) => {
 
-    const [number, setNumber] = useState(1)
-
-    const sumar = () => {
-        setNumber(number + 1)
-        
-    }
-
-    const restar = () => {
-        setNumber(number - 1)
-    }
-
-    const agregarCarrito = () => {
-        alert(setNumber(number))
-        console.log(number)
-    }
+    const {contador, increment, decrement} = useCount (1, stock, initial)
 
     return (
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button onClick={restar} type="button">-</button>
-            <button>{number}</button>
-            <button onClick={sumar} type="button">+</button>
-            <button onClick={agregarCarrito}>Agregar al Carrito</button>
+            <button onClick={decrement} type="button">-</button>
+            <button>{contador}</button>
+            <button onClick={increment} type="button">+</button>
+            <div>
+            <button onClick={() => onAdd(contador)} className="agregarAlCarrito"><p>🛒</p></button>
+            </div>
 </div>
     )
 }
 
-export default ItemCount
+   
