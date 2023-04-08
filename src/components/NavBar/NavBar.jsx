@@ -6,13 +6,14 @@ import CartWidget from "../CartWidget/CartWidget";
 import logo from "./assets/logo-st.jpg";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-bootstrap";
+import "./NavBar.css";
 
 function NavBar() {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Link to="/">
-          <Navbar.Brand href="#home">
+        <Navbar.Brand href="#home">
+          <Link to="/">
             <img
               alt="logo-st"
               src={logo}
@@ -20,31 +21,45 @@ function NavBar() {
               height="100"
               className="d-inline-block align-top"
             />{" "}
-          </Navbar.Brand>
-        </Link>
+          </Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link>Home</Nav.Link>
-            <Nav.Link href="#link">Servicio Técnico</Nav.Link>
-            <NavDropdown title="Productos" id="basic-nav-dropdown">
-              <NavDropdown.Item>
-                <NavLink to="/categoria/procesadores">Procesadores</NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink to="/categoria/placas">Placas de Video</NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink to="/categoria/monitores">Monitores</NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink to="/categoria/perisfericos">Perisféricos</NavLink>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink to="/categoria/almacenamiento">Almacenamiento</NavLink>
-              </NavDropdown.Item>
+            <NavLink><Link className="botonesNav" to="/"> Home</Link></NavLink>
+            <NavLink><Link className="botonesNav" to="/">Servicio Técnico</Link></NavLink>
+            <NavDropdown className="botonesNav" title="Productos" id="basic-nav-dropdown">
+              <li>
+                <Link className="categorias" to="/category/Procesadores">
+                  Procesadores
+                </Link>
+              </li>
+
+              <li>
+                <Link className="categorias" to="/category/Placas de Video">
+                  Placas de Video
+                </Link>
+              </li>
+
+              <li>
+                <Link className="categorias" to="/category/Monitores">
+                  Monitores
+                </Link>
+              </li>
+
+              <li>
+                <Link className="categorias" to="/category/Perisféricos">
+                  Perisféricos
+                </Link>
+              </li>
+
+              <li>
+                <Link className="categorias" to="/category/Almacenamiento">
+                  Almacenamiento
+                </Link>
+              </li>
             </NavDropdown>
-            <Link to="cart">
+            <Link to="/cart">
               <CartWidget />
             </Link>
           </Nav>
