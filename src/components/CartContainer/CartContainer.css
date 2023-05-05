@@ -1,0 +1,27 @@
+.titulo {
+    text-decoration:wavy;
+    text-orientation: sideways-right;
+}
+.imgProd {
+    border-style:groove;
+    border-radius: 25px;
+    padding: 15px;
+}
+.vaciarCarro {
+    width: 14%;
+    background-color: rgb(94, 94, 94);
+    
+}
+.vaciarCarro:hover {
+    background-color: red;
+}
+.text-muted {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    text-align: center;
+    justify-content: space-evenly;
+}
+.contador {
+    padding: 50px;
+}

@@ -1,10 +1,20 @@
-import { Card } from "react-bootstrap"
+import { ButtonGroup, Card } from "react-bootstrap"
 import { ItemCount } from "../ItemCount/ItemCount"
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import "./ItemDetail.css"
+import { useCartContext } from "../Context/CartContext"
+
 
 const ItemDetail = ({produ}) => {
     
+    const {agregarAlCart} = useCartContext ()
+
+    const [cantidadAgregada, setCantidadAgregada] = useState(0)
+
     const onAdd = (cantidad) => {
-        console.log (cantidad)
+        setCantidadAgregada (cantidad)
+        agregarAlCart({...produ, cantidad})
     }
     
     
@@ -21,7 +31,16 @@ const ItemDetail = ({produ}) => {
             <p>Categoría</p><h5>{produ.categoria}</h5>
             </Card.Text>
           </Card.Body>
-          <ItemCount initial={1} stock={5} onAdd={onAdd} />
+          <>
+          {cantidadAgregada > 0 ?
+            <ButtonGroup className="botonesFinalizar">
+            <Link to='/'><button type="button" className="botonSeguir">Seguir comprando 🔙</button></Link>
+            <Link to='/cart'><button type="button" className="botonCompra">Finalizar Compra ✅</button></Link>
+            </ButtonGroup>
+            :
+            (<ItemCount initial={1} stock={5} onAdd={onAdd}/>)
+        }
+          </>
         </Card>
       </div>
   )

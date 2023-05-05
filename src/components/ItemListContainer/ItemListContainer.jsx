@@ -1,37 +1,57 @@
-import { useEffect, useState } from "react"
-import ItemList from "../ItemList/ItemList"
-import { getProductos } from "../utils/asyncMock"
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
+import ItemList from "../ItemList/ItemList";
+import { useParams } from "react-router-dom";
+import {
+  getDocs,
+  getFirestore,
+  collection,
+  where,
+  query,
+} from "firebase/firestore";
+import { Loading } from "../Loading/Loading";
 
-const ItemListContainer = ({}) => {
-    
-    const [productos, setProducto] = useState ([])
+const ItemListContainer = () => {
+  const [productos, setProductos] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { cat } = useParams();
 
-    const {cat} = useParams()
+  useEffect(() => {
+    if (cat) {
+      const db = getFirestore();
+      const queryCollection = collection(db, "productos");
 
-    useEffect (() => {
-        if (cat) {
-            getProductos ()
-            .then(res => {
-                setProducto(res.filter(prod => prod.categoria === cat ))
-            })
-        } else {
-            getProductos ()
-            .then(res => {
-                setProducto(res)
-            })
-        }
+      const queryFilter = query(queryCollection, where("categoria", "==", cat));
 
+      getDocs(queryFilter)
+        .then((resp) =>
+          setProductos(
+            resp.docs.map((producto) => ({
+              id: producto.id,
+              ...producto.data(),
+            }))
+          )
+        )
+        .catch((err) => console.log(err))
+        .finally(() => setIsLoading(false));
+    } else {
+      const db = getFirestore();
+      const queryCollection = collection(db, "productos");
 
-        
-    }, [cat])
+      getDocs(queryCollection)
+        .then((resp) =>
+          setProductos(
+            resp.docs.map((producto) => ({
+              id: producto.id,
+              ...producto.data(),
+            }))
+          )
+        )
+        .catch((err) => console.log(err))
+        .finally(() => setIsLoading(false));
+    }
+  }, [cat]);
 
+  return <>{isLoading ? <Loading /> : <ItemList productos={productos} />}</>;
+};
 
-    return (
-        <div>
-            <ItemList productos={productos}/>
-        </div>
-    )
-}
-
-export default ItemListContainer 
+export default ItemListContainer;
