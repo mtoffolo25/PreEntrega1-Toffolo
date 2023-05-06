@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import Swal from "sweetalert2";
 
 export const CartContex = createContext();
 
@@ -49,6 +50,45 @@ export const CartContextProvider = ({ children }) => {
     setCartList([]);
   };
 
+  const alertaCompra = () => {
+    return Swal.fire({
+      title: "¿Estás seguro que quieres finalizar tu compra?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let timerInterval;
+        Swal.fire({
+          title: "Tu compra esta siendo realizada...",
+          html: "¡Espere unos segundos!",
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading();
+            const b = Swal.getHtmlContainer().querySelector("b");
+            timerInterval = setInterval(() => {
+              b.textContent = Swal.getTimerLeft();
+            }, 100);
+          },
+          willClose: () => {
+            clearInterval(timerInterval);
+          },
+        }).then((result) => {
+          Swal.fire(
+            "Realizada con éxito",
+            "¡Muchas gracias por su compra!",
+            "success"
+          );
+          vaciarCarrito();
+          if (result.dismiss === Swal.DismissReason.timer) {
+          }
+        });
+      }
+    });
+  };
+
   return (
     <CartContex.Provider
       value={{
@@ -58,6 +98,7 @@ export const CartContextProvider = ({ children }) => {
         precioTotal,
         eliminarProd,
         cantidadTotal,
+        alertaCompra,
       }}
     >
       <>{children}</>

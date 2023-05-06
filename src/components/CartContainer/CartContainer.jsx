@@ -1,11 +1,28 @@
-import { Button, Card, CloseButton } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import { useCartContext } from "../Context/CartContext";
 import "./CartContainer.css";
 import { Link } from "react-router-dom";
+import { addDoc, collection, getFirestore } from "firebase/firestore"
 
 const CartContainer = () => {
-  const { cartList, vaciarCarrito, precioTotal, eliminarProd } =
+  const { cartList, vaciarCarrito, precioTotal, eliminarProd, alertaCompra } =
     useCartContext();
+
+  const finalizarCompra = () => {
+      const order = {buyer: {name: 'Maxi', phone: '3534266722', email: 'maxi_toffolo@hotmail.com'}, 
+      items: cartList.map(({id, nombre, precio, cantidad}) => ({id, nombre, precio, cantidad})),
+      total: precioTotal()}
+
+      const db = getFirestore()
+      const queryColecction = collection(db, 'orders')
+    
+      addDoc (queryColecction, order)
+      .then(resp => console.log(resp.id))
+      .catch(err => console.log(err))
+      .finally(alertaCompra())
+  };
+
+
 
   return cartList.length === 0 ? (
     <>
@@ -52,7 +69,9 @@ const CartContainer = () => {
       <Button onClick={vaciarCarrito} className="vaciarCarro">
         Vaciar 🛒
       </Button>
-      <Button className="finalizarCompra">Finalizar Compra</Button>
+      <Button onClick={finalizarCompra} className="finalizarCompra">
+        Finalizar Compra
+      </Button>
     </div>
   );
 };
