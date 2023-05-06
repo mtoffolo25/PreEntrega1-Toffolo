@@ -51,7 +51,7 @@ export const CartContextProvider = ({ children }) => {
   };
 
   const alertaCompra = () => {
-    return Swal.fire({
+    return (Swal.fire({
       title: "¿Estás seguro que quieres finalizar tu compra?",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -86,7 +86,8 @@ export const CartContextProvider = ({ children }) => {
           }
         });
       }
-    });
+    })
+    )
   };
 
   return (
