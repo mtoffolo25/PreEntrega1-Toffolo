@@ -3,10 +3,9 @@ import { useCartContext } from "../Context/CartContext";
 import "./CartContainer.css";
 import { Link } from "react-router-dom";
 
-
 const CartContainer = () => {
-  const { cartList, vaciarCarrito, precioTotal, eliminarProd } = useCartContext();
-
+  const { cartList, vaciarCarrito, precioTotal, eliminarProd } =
+    useCartContext();
 
   return cartList.length === 0 ? (
     <>
@@ -28,7 +27,12 @@ const CartContainer = () => {
     <div>
       {cartList.map((product) => (
         <Card className="text-center" key={product.id}>
-          <Button onClick={() => eliminarProd (product.id)} className="btn-danger .align-self-end">X</Button>
+          <Button
+            onClick={() => eliminarProd(product.id)}
+            className="btn-danger .align-self-end"
+          >
+            X
+          </Button>
           <Card.Header className="titulo">
             <h3>{product.nombre}</h3>
           </Card.Header>
@@ -39,13 +43,16 @@ const CartContainer = () => {
           </Card.Body>
         </Card>
       ))}
-      <h1 className="totalCompra">TOTAL DE LA COMPRA: ${precioTotal}</h1>
+      <h1 className="totalCompra">TOTAL DE LA COMPRA: ${precioTotal()}</h1>
+      <Link to="/">
+        <Button className="irComprar" variant="primary">
+          Ir a comprar ↩
+        </Button>
+      </Link>
       <Button onClick={vaciarCarrito} className="vaciarCarro">
         Vaciar 🛒
       </Button>
-      <Button className="finalizarCompra">
-        Finalizar Compra
-      </Button>
+      <Button className="finalizarCompra">Finalizar Compra</Button>
     </div>
   );
 };

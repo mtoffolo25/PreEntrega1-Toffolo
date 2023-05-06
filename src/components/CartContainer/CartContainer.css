@@ -13,6 +13,8 @@
     width: 14%;
     background-color: rgb(94, 94, 94);
     margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .vaciarCarro:hover {
     background-color: red;
@@ -45,7 +47,6 @@
     width: 14%;
     background-color: rgb(94, 94, 94);
     margin-top: 10px;
-    margin-left: 10px;
 }
 .finalizarCompra:hover{
     background-color: green;
