@@ -26,7 +26,7 @@ const ItemDetail = ({produ}) => {
             <Card.Title>{produ.nombre}</Card.Title>
             <hr />
             <Card.Text>
-            <p>Precio</p><h5>{produ.precio}</h5>
+            <p>Precio</p><h5>${produ.precio}</h5>
             <hr />
             <p>Categoría</p><h5>{produ.categoria}</h5>
             </Card.Text>

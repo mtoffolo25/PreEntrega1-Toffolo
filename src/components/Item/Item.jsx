@@ -21,4 +21,6 @@ const Item = memo(({ producto }) => {
   );
 });
 
+console.log(Item)
+
 export default Item;

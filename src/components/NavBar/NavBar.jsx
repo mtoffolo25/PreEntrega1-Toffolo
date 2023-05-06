@@ -7,6 +7,7 @@ import logo from "./assets/logo-st.jpg";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-bootstrap";
 import "./NavBar.css";
+import { useCartContext } from "../Context/CartContext";
 
 function NavBar() {
   return (
@@ -26,9 +27,22 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <NavLink><Link className="botonesNav" to="/"> Home</Link></NavLink>
-            <NavLink><Link className="botonesNav" to="/">Servicio Técnico</Link></NavLink>
-            <NavDropdown className="botonesNav" title="Productos" id="basic-nav-dropdown">
+            <NavLink>
+              <Link className="botonesNav" to="/">
+                {" "}
+                Home
+              </Link>
+            </NavLink>
+            <NavLink>
+              <Link className="botonesNav" to="/">
+                Servicio Técnico
+              </Link>
+            </NavLink>
+            <NavDropdown
+              className="botonesNav"
+              title="Productos"
+              id="basic-nav-dropdown"
+            >
               <li>
                 <Link className="categorias" to="/category/Procesadores">
                   Procesadores

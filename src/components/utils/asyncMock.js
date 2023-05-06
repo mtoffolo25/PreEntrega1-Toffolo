@@ -142,7 +142,7 @@ export const getProductos = (id) => {
     return new Promise ((resolve) => {
         setTimeout(() => {
             resolve(id ? productos.find(prod => prod.id === id) : productos)
-        }, 1500);
+        }, 2000);
     })
 }
 
