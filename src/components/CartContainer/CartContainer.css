@@ -55,3 +55,16 @@
     background-color: white;
     border-color: gray;
 }
+.formSubmit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form input {
+    width: 50%;
+    height: 40px;
+    margin: 10px;
+    border-radius: 10px;
+}
